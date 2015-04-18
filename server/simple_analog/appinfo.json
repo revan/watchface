@@ -10,7 +10,12 @@
   },
   "appKeys": {},
   "resources": {
-    "media": []
+      "media": [
+          {
+              "type": "png",
+              "name": "BACKGROUND",
+              "file": "images/back.png"
+          }]
   },
   "targetPlatforms": [
     "aplite",

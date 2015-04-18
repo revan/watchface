@@ -3,8 +3,13 @@
 #include "pebble.h"
 
 static Window *window;
-static Layer *s_simple_bg_layer, *s_date_layer, *s_hands_layer;
+//static Layer *s_simple_bg_layer, *s_date_layer, *s_hands_layer;
+static Layer *s_date_layer, *s_hands_layer;
 static TextLayer *s_day_label, *s_num_label;
+
+// background
+static BitmapLayer *s_background_layer;
+static GBitmap *s_background_bitmap;
 
 static GPath *s_tick_paths[NUM_CLOCK_TICKS];
 static GPath *s_minute_arrow, *s_hour_arrow;
@@ -72,9 +77,11 @@ static void window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
 
-  s_simple_bg_layer = layer_create(bounds);
-  layer_set_update_proc(s_simple_bg_layer, bg_update_proc);
-  layer_add_child(window_layer, s_simple_bg_layer);
+  // Create GBitmap, then set to created BitmapLayer
+  s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_BACKGROUND);
+  s_background_layer = bitmap_layer_create(GRect(0, 0, 144, 168));
+  bitmap_layer_set_bitmap(s_background_layer, s_background_bitmap);
+  layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_background_layer));
 
   s_date_layer = layer_create(bounds);
   layer_set_update_proc(s_date_layer, date_update_proc);
@@ -102,7 +109,13 @@ static void window_load(Window *window) {
 }
 
 static void window_unload(Window *window) {
-  layer_destroy(s_simple_bg_layer);
+  // Destroy GBitmap
+  gbitmap_destroy(s_background_bitmap);
+
+  // Destroy BitmapLayer
+  bitmap_layer_destroy(s_background_layer);
+
+  //layer_destroy(s_simple_bg_layer);
   layer_destroy(s_date_layer);
 
   text_layer_destroy(s_day_label);
