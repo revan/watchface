@@ -1,6 +1,6 @@
 #!/bin/python
 import os
-from flask import Flask, request, redirect, url_for, send_from_directory
+from flask import Flask, request, redirect, url_for, send_from_directory, render_template
 from werkzeug import secure_filename
 from subprocess import call
 from imageToBW import imageToBW
@@ -46,6 +46,7 @@ def upload_file():
             return redirect(url_for('fetch_file', key=key+'.pbw'))
         return 'INVALID'
 
+    return render_template('main.html')
     return '''
     <!doctype html>
     <title>Upload face</title>
