@@ -29,7 +29,6 @@ def upload_file():
     if request.method == 'POST':
         file = request.files['file']
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
             key = generateKey()
             path = os.path.join(app.config['UPLOAD_FOLDER'], key)
             file.save(path)
@@ -39,7 +38,7 @@ def upload_file():
             call(['mv', path, app.config['IMAGE_PATH']])
 
             os.chdir(app.config['APP_FOLDER'])
-            call(['pebble', 'build'])
+            call(['/root/pebble-dev/PebbleSDK-3.0-dp8/bin/pebble', 'build'])
             os.chdir('..')
 
             call(['mv', app.config['BUILD_PATH'], os.path.join(app.config['DOWNLOAD_FOLDER'], key+'.pbw')])
