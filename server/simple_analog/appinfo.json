@@ -1,8 +1,8 @@
 {
-  "uuid": "ecc8f112-318f-4ee2-be11-53c63b8a1139",
-  "shortName": "My Simple Analog",
-  "longName": "My Simple Analog",
-  "companyName": "Pebble Technology",
+  "uuid": "eb2ed08f-997d-44dc-9816-543092d2d04d",
+  "shortName": "Face Watch",
+  "longName": "Face Watch",
+  "companyName": "Revan Sopher",
   "versionCode": 1,
   "versionLabel": "1.0",
   "watchapp": {
