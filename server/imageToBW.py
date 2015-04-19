@@ -10,6 +10,8 @@ def imageToBW(path):
 
     image_file = image_file.convert('1') # convert image to black and white
 
+    image_file = image_file.transpose(Image.FLIP_LEFT_RIGHT)
+
     path = path + '.png'
     image_file.save(path)
 
