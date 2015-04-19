@@ -47,16 +47,6 @@ def upload_file():
         return 'INVALID'
 
     return render_template('main.html')
-    return '''
-    <!doctype html>
-    <title>Upload face</title>
-    <h1>Upload face</h1>
-    <form action="" method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
-    <p>Wait a minute, then GET /fetch/[key]</p>
-    </form>
-    '''
 
 @app.route('/fetch/<key>')
 def fetch_file(key):
