@@ -11,7 +11,7 @@ characteristic==0.1.0
 chardet==2.2.1
 colorama==0.3.1
 configobj==4.7.2
-html5lib==0.999
+html5lib==0.99999999
 idna==0.9
 iotop==0.6
 itsdangerous==0.24
